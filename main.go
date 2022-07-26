@@ -75,6 +75,7 @@ func main() {
 
 	users := r.PathPrefix("/users").Subrouter()
 	users.HandleFunc("/read_user", users_pack.ReadUser)
+	users.HandleFunc("/read_and_see_user", users_pack.ReadAndSeeUser).Methods("GET")
 	users.HandleFunc("/create_user", users_pack.CreateUser)
 	users.HandleFunc("/delete_user", users_pack.DeleteUser)
 	users.HandleFunc("/update_user", users_pack.UpdataUser)
