@@ -6,6 +6,7 @@ import (
 	users_pack "ex.sov/users"
 	"fmt"
 	"github.com/gorilla/mux"
+	"html/template"
 	"net/http"
 )
 
@@ -78,10 +79,35 @@ func main() {
 	users.HandleFunc("/read_and_see_user", users_pack.ReadAndSeeUser).Methods("GET")
 	users.HandleFunc("/create_user", users_pack.CreateUser)
 	users.HandleFunc("/delete_user", users_pack.DeleteUser)
-	users.HandleFunc("/update_user", users_pack.UpdataUser)
+	users.HandleFunc("/update_user", users_pack.UpdateUser)
+	users.HandleFunc("/temp_user", users_pack.TempUser)
+
+	templates := r.PathPrefix("/templates").Subrouter()
+	templates.HandleFunc("/tmpl1", tmpl_1)
 
 	err2 := http.ListenAndServe(":8091", r)
 	check(err2)
+
+}
+func tmpl_1(writer http.ResponseWriter, request *http.Request) {
+	type Todo struct {
+		Title string
+		Done  bool
+	}
+	type TodoPageData struct {
+		PageTitle string
+		Todos     []Todo
+	}
+	tmpl := template.Must(template.ParseFiles("template_1.html"))
+	data := TodoPageData{
+		PageTitle: "My TODO list",
+		Todos: []Todo{
+			{Title: "Task 1", Done: false},
+			{Title: "Task 2", Done: true},
+			{Title: "Task 3", Done: true},
+		},
+	}
+	tmpl.Execute(writer, data)
 
 }
 func AllKick(writer http.ResponseWriter, request *http.Request) {

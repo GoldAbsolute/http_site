@@ -16,3 +16,5 @@ replace ex.sov/books => ./books
 replace ex.sov/db => ./db
 
 replace ex.sov/users => ./users
+
+replace ex.sov/html-ex => ./html-ex

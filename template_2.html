@@ -1,0 +1,25 @@
+<h1>{{.PageTitle}}</h1>
+<style type="text/css">
+    .users_list {
+        display: flex;
+        flex-direction: column;
+    }
+    .block {
+        /*border: 2px solid black;*/
+        /*margin: 10px*/
+    }
+</style>
+<ul class="users_list">
+    {{range .Users_arr}}
+    <br>
+    <hr>
+    <div class="block">
+        <li class="user_id">{{.Id}}</li>
+        <li class="user_name">{{.Username}}</li>
+        <li class="user_password">{{.Password}}</li>
+        <li class="user_created">{{.CreatedAt}}</li>
+    </div>
+    {{end}}
+    <hr>
+    <br>
+</ul>

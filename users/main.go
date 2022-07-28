@@ -3,6 +3,7 @@ package users
 import (
 	"ex.sov/db"
 	"fmt"
+	"html/template"
 	"net/http"
 	"time"
 )
@@ -74,8 +75,9 @@ func ReadAndSeeUser(writer http.ResponseWriter, request *http.Request) {
 	check(err8)
 	// Вывод
 	for i, u := range users {
-		fmt.Fprintf(writer, "%v: UserId: %d, UserName: %s, UserPassword: %s, CreatedDate: %v \n", i, u.id, u.username, u.password, u.createdAt)
+		fmt.Fprintf(writer, "Индекс: %v: UserId: %d, UserName: %s, UserPassword: %s, CreatedDate: %v \n", i, u.id, u.username, u.password, u.createdAt)
 	}
+
 }
 func CreateUser(writer http.ResponseWriter, request *http.Request) {
 	db := db.ReturnDB()
@@ -93,8 +95,42 @@ func CreateUser(writer http.ResponseWriter, request *http.Request) {
 
 }
 func DeleteUser(writer http.ResponseWriter, request *http.Request) {
+	db := db.ReturnDB()
+	_, err := db.Exec(`DELETE FROM users WHERE id = ?`, 1)
+	check(err)
+}
+func UpdateUser(writer http.ResponseWriter, request *http.Request) {
 
 }
-func UpdataUser(writer http.ResponseWriter, request *http.Request) {
+func TempUser(writer http.ResponseWriter, request *http.Request) {
+	db := db.ReturnDB()
+	type user struct {
+		Id        int
+		Username  string
+		Password  string
+		CreatedAt time.Time
+	}
+	rows, err := db.Query(`SELECT id, username, password, created_at FROM users`)
+	defer rows.Close()
+	check(err)
+	type UsersType struct {
+		PageTitle string
+		Users_arr []user
+	}
+	//var users UsersType
+	users := UsersType{PageTitle: "Пейдж тайтл"}
+	//var users []user
+	for rows.Next() {
+		var u user
+		err := rows.Scan(&u.Id, &u.Username, &u.Password, &u.CreatedAt)
+		check(err)
+		users.Users_arr = append(users.Users_arr, u)
+	}
+	err8 := rows.Err()
+	check(err8)
 
+	tmpl, err10 := template.ParseFiles("template_2.html")
+	check(err10)
+	err11 := tmpl.Execute(writer, users)
+	check(err11)
 }
