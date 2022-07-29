@@ -1,8 +1,10 @@
 package main
 
 import (
+	"ex.sov/bmiddleware"
 	"ex.sov/books"
 	"ex.sov/db"
+	"ex.sov/forms"
 	users_pack "ex.sov/users"
 	"fmt"
 	"github.com/gorilla/mux"
@@ -68,6 +70,9 @@ func main() {
 
 	r.HandleFunc("/secure", books.SecureHandler).Schemes("https")
 	r.HandleFunc("/insecure", books.InsecureHandler).Schemes("http")
+
+	forms.Form1(r)
+	bmiddleware.Bmiddleware(r)
 
 	kickRouter := r.PathPrefix("/kick").Subrouter()
 	kickRouter.HandleFunc("", AllKick)
