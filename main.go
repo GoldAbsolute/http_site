@@ -83,6 +83,7 @@ func main() {
 	users.HandleFunc("/temp_user", users_pack.TempUser)
 
 	templates := r.PathPrefix("/templates").Subrouter()
+
 	templates.HandleFunc("/tmpl1", tmpl_1)
 
 	err2 := http.ListenAndServe(":8091", r)
