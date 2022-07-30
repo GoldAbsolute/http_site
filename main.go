@@ -73,6 +73,8 @@ func main() {
 
 	forms.Form1(r)
 	bmiddleware.Bmiddleware(r)
+	//sessions-cookie
+	bmiddleware.SecretWareHandler(r)
 
 	kickRouter := r.PathPrefix("/kick").Subrouter()
 	kickRouter.HandleFunc("", AllKick)
@@ -123,4 +125,4 @@ func IdHandler(writer http.ResponseWriter, request *http.Request) {
 
 }
 
-//db
+// db
