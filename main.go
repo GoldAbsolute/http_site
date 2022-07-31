@@ -5,6 +5,7 @@ import (
 	"ex.sov/books"
 	"ex.sov/db"
 	exjson2 "ex.sov/exjson"
+	"ex.sov/exws"
 	"ex.sov/forms"
 	users_pack "ex.sov/users"
 	"fmt"
@@ -85,6 +86,10 @@ func main() {
 	exjsonSubRouter := r.PathPrefix("/exjson").Subrouter()
 	exjsonSubRouter.HandleFunc("/decode", exjson2.DecodeJson)
 	exjsonSubRouter.HandleFunc("/encode", exjson2.EncodeJson)
+
+	websocketSubRouter := r.PathPrefix("/ws").Subrouter()
+	websocketSubRouter.HandleFunc("/", exws.WebSeeHanlder)
+	websocketSubRouter.HandleFunc("/echo", exws.WebSuck)
 
 	users := r.PathPrefix("/users").Subrouter()
 	users.HandleFunc("/read_user", users_pack.ReadUser)

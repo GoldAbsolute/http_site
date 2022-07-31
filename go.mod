@@ -7,6 +7,7 @@ require (
 	ex.sov/books v0.0.0-00010101000000-000000000000
 	ex.sov/db v0.0.0-00010101000000-000000000000
 	ex.sov/exjson v0.0.0-00010101000000-000000000000
+	ex.sov/exws v0.0.0-00010101000000-000000000000
 	ex.sov/forms v0.0.0-00010101000000-000000000000
 	ex.sov/users v0.0.0-00010101000000-000000000000
 	github.com/gorilla/mux v1.8.0
@@ -17,6 +18,7 @@ require (
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/gorilla/securecookie v1.1.1 // indirect
 	github.com/gorilla/sessions v1.2.1 // indirect
+	github.com/gorilla/websocket v1.5.0 // indirect
 )
 
 replace ex.sov/books => ./books
@@ -36,3 +38,5 @@ replace ex.sov/sessions => ./mysessions
 replace ex.sov/mysessions => ./mysessions
 
 replace ex.sov/exjson => ./exjson
+
+replace ex.sov/exws => ./exws
