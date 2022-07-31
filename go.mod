@@ -6,6 +6,7 @@ require (
 	ex.sov/bmiddleware v0.0.0-00010101000000-000000000000
 	ex.sov/books v0.0.0-00010101000000-000000000000
 	ex.sov/db v0.0.0-00010101000000-000000000000
+	ex.sov/exjson v0.0.0-00010101000000-000000000000
 	ex.sov/forms v0.0.0-00010101000000-000000000000
 	ex.sov/users v0.0.0-00010101000000-000000000000
 	github.com/gorilla/mux v1.8.0
@@ -33,3 +34,5 @@ replace ex.sov/bmiddleware => ./bmiddleware
 replace ex.sov/sessions => ./mysessions
 
 replace ex.sov/mysessions => ./mysessions
+
+replace ex.sov/exjson => ./exjson

@@ -4,6 +4,7 @@ import (
 	"ex.sov/bmiddleware"
 	"ex.sov/books"
 	"ex.sov/db"
+	exjson2 "ex.sov/exjson"
 	"ex.sov/forms"
 	users_pack "ex.sov/users"
 	"fmt"
@@ -80,6 +81,10 @@ func main() {
 	kickRouter.HandleFunc("", AllKick)
 	kickRouter.HandleFunc("/", AllKick)
 	kickRouter.HandleFunc("/{id}", IdHandler)
+
+	exjsonSubRouter := r.PathPrefix("/exjson").Subrouter()
+	exjsonSubRouter.HandleFunc("/decode", exjson2.DecodeJson)
+	exjsonSubRouter.HandleFunc("/encode", exjson2.EncodeJson)
 
 	users := r.PathPrefix("/users").Subrouter()
 	users.HandleFunc("/read_user", users_pack.ReadUser)
