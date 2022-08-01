@@ -6,6 +6,7 @@ require (
 	ex.sov/bmiddleware v0.0.0-00010101000000-000000000000
 	ex.sov/books v0.0.0-00010101000000-000000000000
 	ex.sov/db v0.0.0-00010101000000-000000000000
+	ex.sov/ex_passwords v0.0.0-00010101000000-000000000000
 	ex.sov/exjson v0.0.0-00010101000000-000000000000
 	ex.sov/exws v0.0.0-00010101000000-000000000000
 	ex.sov/forms v0.0.0-00010101000000-000000000000
@@ -19,6 +20,7 @@ require (
 	github.com/gorilla/securecookie v1.1.1 // indirect
 	github.com/gorilla/sessions v1.2.1 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
+	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa // indirect
 )
 
 replace ex.sov/books => ./books
@@ -40,3 +42,5 @@ replace ex.sov/mysessions => ./mysessions
 replace ex.sov/exjson => ./exjson
 
 replace ex.sov/exws => ./exws
+
+replace ex.sov/ex_passwords => ./ex_passwords
